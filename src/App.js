@@ -106,7 +106,7 @@ function App() {
               maxWidth: '600px', // Restrict grid width for a compact layout
             }}
           >
-            {['/1125 (1).mp4', '/1125 (1)(1).mp4', '/1125 (1)(2).mp4', '/1125 (1)(3).mp4'].map((videoSrc, index) => (
+            {['/vid1.mp4', '/vid2.mp4', '/vid3.mp4', '/vid4.mp4'].map((videoSrc, index) => (
               <video
                 key={index}
                 width="500" // Smaller video width
