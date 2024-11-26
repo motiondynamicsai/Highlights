@@ -188,3 +188,27 @@ video {
   font-weight: bold;
 }
 
+/* Dropdown Styling */
+.highlightAI-container select {
+  background-color: #f4f4f4; /* Light gray background */
+  border: 2px solid #0073e6; /* Blue border for a professional look */
+  border-radius: 8px; /* Smooth edges */
+  padding: 10px 15px; /* Add padding for better spacing */
+  font-size: 16px; /* Larger, readable font size */
+  color: #333; /* Dark text for good contrast */
+  cursor: pointer; /* Pointer cursor to indicate interaction */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover and focus effects */
+.highlightAI-container select:hover {
+  background-color: #e6f7ff; /* Lighter blue on hover */
+  border-color: #005bb5; /* Darker blue border on hover */
+}
+
+.highlightAI-container select:focus {
+  outline: none; /* Remove the default outline */
+  border-color: #005bb5; /* Focused state border color */
+  box-shadow: 0 0 6px rgba(0, 91, 181, 0.5); /* Glow effect */
+}
