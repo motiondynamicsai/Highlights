@@ -5,35 +5,39 @@ function App() {
   const [showProgressBar, setShowProgressBar] = useState(false);
   const [progress, setProgress] = useState(0);
   const [showHighlights, setShowHighlights] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selectedSport, setSelectedSport] = useState('squash');
 
   const handleButtonClick = () => {
-    const randomSeconds = Math.floor(Math.random() * (7 - 3 + 1)) + 3; // Random number between 3 and 7
+    const randomSeconds = Math.floor(Math.random() * (7 - 3 + 1)) + 3;
     setProgress(0);
     setShowHighlights(false);
     setShowProgressBar(true);
+    setLoading(true);
 
     let currentProgress = 0;
     const interval = setInterval(() => {
-      currentProgress += 100 / (randomSeconds * 10); // Increment progress in steps
+      currentProgress += 100 / (randomSeconds * 10);
       if (currentProgress >= 100) {
         clearInterval(interval);
         setShowProgressBar(false);
         setShowHighlights(true);
+        setLoading(false);
       }
       setProgress(currentProgress);
-    }, 100); // Update progress every 100ms
+    }, 100);
   };
 
   const handleReset = () => {
     setShowHighlights(false);
     setShowProgressBar(false);
     setProgress(0);
+    setLoading(false);
   };
 
   const handleSportChange = (event) => {
     setSelectedSport(event.target.value);
-    handleReset(); // Reset the state when changing the sport
+    handleReset();
   };
 
   // Define video sources and descriptions for each sport
@@ -63,7 +67,7 @@ function App() {
         ],
     Snow: [
       { src: '/Highlights/snowHL1.mp4', description: 'Snow Highlight 1: Back flip into a fall' },
-      { src: '/Highlights/snowHL2.mp4', description: 'Snow Highlight 2: Outrageos trick off a kicker' },
+      { src: '/Highlights/SnowHL2.mp4', description: 'Snow Highlight 2: Outrageos trick off a kicker' },
       { src: '/Highlights/snowHL3.mp4', description: 'Snow Highlight 3: Massive 360' },
       { src: '/Highlights/snowHL4.mp4', description: 'Snow Highlight 4: Huge wipe out ' },
       { src: '/Highlights/snowHL5.mp4', description: 'Snow Highlight 5: Flat spin fall to finish ' },
@@ -102,11 +106,8 @@ function App() {
         </select>
       </div>
 
-      {/* Text above the main embedded video */}
       <div className="video-description-container">
-        <p className="video-description">
-          {videoDescriptions[selectedSport]}
-        </p>
+        <p className="video-description">{videoDescriptions[selectedSport]}</p>
       </div>
 
       <div className="video-container">
@@ -128,6 +129,21 @@ function App() {
         </button>
       </div>
 
+      {/* Loading Screen */}
+      {loading && (
+  <div className="loading-overlay">
+    <div className="loading-message">
+      <p>Generating Highlights...</p>
+      <div className="progress-bar">
+        <div className="progress-bar-bg">
+          <div className="progress-bar-fill" style={{ width: `${progress}%` }}></div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+
       {showProgressBar && (
         <div className="progress-bar">
           <div className="progress-bar-bg">
@@ -135,6 +151,7 @@ function App() {
           </div>
         </div>
       )}
+
       {showHighlights && (
         <div className="highlights">
           <h2>{videoData[selectedSport].length} Highlights found:</h2>
@@ -143,9 +160,9 @@ function App() {
               <div key={index} className="video-item">
                 <video controls preload="metadata">
                   <source src={video.src} type="video/mp4" />
-                  Your browser does not support the video tag, or the video could not be loaded.
+                  Your browser does not support the video tag.
                 </video>
-                <p className="video-caption">{video.description}</p> {/* Display description */}
+                <p className="video-caption">{video.description}</p>
               </div>
             ))}
           </div>
