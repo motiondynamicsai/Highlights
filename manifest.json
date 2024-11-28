@@ -3,12 +3,12 @@
   "name": "HighlightAI",
   "icons": [
     {
-      "src": "HLlogo.png",
+      "src": "HLlogo.jpg",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "HLlogo.png",
+      "src": "HLlogo.jpg",
       "type": "image/png",
       "sizes": "512x512"
     }
