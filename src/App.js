@@ -155,6 +155,19 @@ function App() {
       {showHighlights && (
         <div className="highlights">
           <h2>{videoData[selectedSport].length} Highlights found:</h2>
+          <img
+            src={
+              selectedSport === 'squash'
+                ? '/Highlights/squashframe.png'
+                : selectedSport === 'tennis'
+                ? '/Highlights/tennisFrame.png'
+                : selectedSport === 'football'
+                ? '/Highlights/FootballFrames.png'
+                : '/Highlights/snowFrame.png'
+            }
+            alt={`${selectedSport} frame`}
+            className="sport-frame"
+          />
           <div className="video-grid">
             {videoData[selectedSport].map((video, index) => (
               <div key={index} className="video-item">
